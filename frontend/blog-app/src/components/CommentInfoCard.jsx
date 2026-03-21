@@ -31,7 +31,7 @@ const CommentInfoCard = ({ commentId, authorName, authorPhoto, content, updatedO
 			setShowReplyForm(false)
 			getAllComments()
 		} catch (error) {
-			console.error('Error adding reply: ', error)
+			console.error('Error adding reply.: ', error)
 			toast.error('Failed to add reply')
 		}
 	}
