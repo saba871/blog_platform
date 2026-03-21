@@ -1,28 +1,24 @@
-const multer = require('multer');
+const multer = require('multer')
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const cloudinary = require('../config/cloudinary')
 
-// save image on my disk storage not in Ram
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/")
-    },
-
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`)
-    }
+const storage = new CloudinaryStorage({
+	cloudinary,
+	params: {
+		folder: 'blog-platform',
+		allowed_formats: ['jpeg', 'png', 'jpg'],
+	},
 })
 
-
-// filter image types which is allow or not
 const fileFilter = (req, file, cb) => {
-    const allowedType = ["image/jpeg", "image/png", "image/jpg"]
-
-    if (allowedType.includes(file.mimetype)) {
-        cb(null, true)
-    } else {
-        cb(new Error("Only .jpeg, .png, .jpg formats are allowed"), false)
-    }
+	const allowedType = ['image/jpeg', 'image/png', 'image/jpg']
+	if (allowedType.includes(file.mimetype)) {
+		cb(null, true)
+	} else {
+		cb(new Error('Only .jpeg, .png, .jpg formats are allowed'), false)
+	}
 }
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({ storage, fileFilter })
 
 module.exports = { upload }

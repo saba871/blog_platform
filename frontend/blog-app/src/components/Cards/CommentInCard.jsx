@@ -1,10 +1,10 @@
+import moment from 'moment'
 import React, { useContext, useState } from 'react'
-import { API_PATHS, BASE_URL } from '../../utils/apiPath'
+import toast from 'react-hot-toast'
 import { LuChevronDown, LuDot, LuReply, LuTrash2 } from 'react-icons/lu'
 import { UserContext } from '../../context/userContext'
-import toast from 'react-hot-toast'
+import { API_PATHS } from '../../utils/apiPath'
 import axiosInstance from '../../utils/axiosInstance'
-import moment from 'moment'
 import CommentReplyInput from '../Inputs/CommentReplyInput'
 
 const CommentInCard = ({ commentId, authorName, authorPhoto, content, updatedOn, post, postId, replies, getAllComments, onDelete, isSubReply }) => {
@@ -43,8 +43,7 @@ const CommentInCard = ({ commentId, authorName, authorPhoto, content, updatedOn,
 			<div className="flex items-start justify-between gap-4">
 				{/* Left: Avatar + Content */}
 				<div className="flex gap-3 flex-1 min-w-0">
-					<img src={authorPhoto?.startsWith('http') ? authorPhoto : `${BASE_URL}${authorPhoto}`} alt={authorName} className="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-gray-100" />
-					{/* <img src={authorPhoto} alt={authorName} className="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-gray-100" /> */}
+					<img src={authorPhoto} alt={authorName} className="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-gray-100" />
 
 					<div className="flex-1 min-w-0">
 						{/* Author + Date */}
