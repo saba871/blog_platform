@@ -12,8 +12,8 @@ const { aiRoutes } = require("./routes/aiRoutes");
 const app = express();
 
 // ნებადართული დომენების სია
-const allowedOrigins = ["https://blog-platform-liard-two.vercel.app/", "http://localhost:5173"];
-
+const allowedOrigins = ["http://localhost:5173"];
+// "https://blog-platform-liard-two.vercel.app/", 
 // CORS-ის კონფიგურაცია
 app.use(
     cors({
